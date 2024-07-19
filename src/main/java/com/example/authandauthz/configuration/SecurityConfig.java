@@ -39,9 +39,9 @@ public class SecurityConfig {
 //                        .ignoringRequestMatchers("/**"))
                 .authorizeHttpRequests(auth->auth.requestMatchers("/test/welcome","test/addUser").permitAll()
                         .requestMatchers("/test/all").authenticated()
-                        .requestMatchers("/test/user").hasRole("USER")
-                        .requestMatchers("/test/admin").hasRole("ADMIN"))
-                .formLogin(AbstractAuthenticationFilterConfigurer::permitAll)
+                        .anyRequest().authenticated())
+                .httpBasic(Customizer.withDefaults())
+                .formLogin(Customizer.withDefaults())
                 .build();
 
 
